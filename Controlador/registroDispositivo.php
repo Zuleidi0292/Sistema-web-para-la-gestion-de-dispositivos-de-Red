@@ -43,10 +43,13 @@ $idU = $_SESSION['usuario'];
 $dispositivo = new Dispositivos(NULL, $caract, $pre, $exis, $desc, $cant, $img1, $img2, $img3, $marc, $cat, $idU);
 try {
     if ($dispositivo->registrar()) {
-        echo '<div class="alert alert-danger text-center">Se registro correctamente:)</div>';
+        echo '<script>alert("Se registró correctamente.");</script>';
     } else {
         echo '<div class="alert alert-danger text-center">Hubo un error al registrar el dispositivo</div>';
     }
 } catch (Exception $ex) {
     echo '<div class="alert alert-danger text-center">' . $ex->getMessage() . '</div>';
 }
+
+header("Refresh:0; ../index.php");
+die();

@@ -21,7 +21,10 @@
     #img-dispositivo {
       height: 100px;
     }
-    tr, th, td {
+
+    tr,
+    th,
+    td {
       border: solid 1px #000;
     }
   </style>
@@ -67,8 +70,8 @@
           <tbody>
             <?php
 
-            $sql = $conexion->query("SELECT * FROM dispositivo");
-
+            $sql = $conexion->query("SELECT * FROM dispositivo inner join marca on dispositivo.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = dispositivo.idCategoria 
+            inner join usuario on dispositivo.idUsuario = usuario.idUsuario");
             while ($datos = $sql->fetch_object()) {
             ?>
               <tr>
@@ -76,7 +79,7 @@
                 <td><?= $datos->Caracteristicas ?></td>
                 <td><?= $datos->Precio ?></td>
                 <td><?= $datos->Existencia ?></td>
-                <td><?= $datos->Descuento ?></td>
+                <td><?= $datos->Descuento?></td>
                 <td><?= $datos->CantVendida ?></td>
                 <td>
                   <img id="img-dispositivo" src="./Public/<?php echo $datos->img1; ?>" alt="<?php echo $datos->Caracteristicas; ?>">
@@ -87,13 +90,12 @@
                 <td>
                   <img id="img-dispositivo" src="./Public/<?php echo $datos->img3; ?>" alt="<?php echo $datos->Caracteristicas; ?>">
                 </td>
-                <td><?= $datos->idMarca ?></td>
-                <td><?= $datos->idCategoria ?></td>
-                <td><?= $datos->idUsuario ?></td>
+                <td><?= $datos->NombreM ?></td>
+                <td><?= $datos->NomCate ?></td>
+                <td><?= $datos->Nombre ?></td>
                 <td>
-                  <a href="editarDispositivo.php?id=<?= $datos->idDispositivo ?>"><button type="button" class="btn btn-small btn-warning fa-solid fa-user-pen"></button></a>
-                  <a href="index.php?id=<?= $datos->idDispositivo ?>"><button type="button" class="btn btn-small btn-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="return eliminarDispositivo()"></button></a>
-
+                  <a href="editarDispositivo.php?id=<?= $datos->idDispositivo ?>"><button type="button" class="btn btn-small btn-warning fa-solid fa-user-pen"> Editar</button></a>
+                  <a href="index.php?id=<?= $datos->idDispositivo ?>"><button type="button" class="btn btn-small btn-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="return eliminarDispositivo()">Eliminar</button></a>
                 </td>
               </tr>
             <?php }
@@ -268,6 +270,7 @@
 
   <!--Se muestra el foro para el usuario comprador-->
   <?php include_once './Controlador/consultarPreguntas.php'; ?>
+  <?php include_once "./Modelo/conexion.php"; ?>
   <?php if ($_SESSION['tipo'] == 3) : ?>
     <div id="foro" class="container">
       <section>
@@ -276,19 +279,19 @@
         </header>
 
         <div>
-          <button id="addPregunta">Agregar pregunta</button>
+          <button class="btn btn-primary" id="addPregunta">Agregar pregunta</button>
         </div>
-
+        <br>
         <div id="ver  Preguntas">
           <?php $num_preguntas = sizeof($preguntas); ?>
           <?php if ($num_preguntas > 0) : ?>
-            <table>
+            <table class="table table-success table-striped">
               <tr>
                 <th>Pregunta</th>
               </tr>
               <?php for ($i = 0; $i < $num_preguntas; $i++) : ?>
                 <tr>
-                  <td><?php echo $preguntas[$i]['Pregunta']; ?></td>
+                  <td><?php echo $preguntas[$i]['Pregunta']; ?> <br>Respuesta: <br><br> Responde: </td>
                 </tr>
               <?php endfor; ?>
             </table>

@@ -270,3 +270,42 @@ if (
                     </div>
                 </div>
             </div>
+
+
+              <div class="row g-0 justify-content-center mt-5">
+    <p class="text-center fs-3">Las mejores ofertas las encuentras aquí</p>
+    <?php
+    $sql = $conexion->query("SELECT * FROM dispositivo inner join marca on dispositivo.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = dispositivo.idCategoria 
+            inner join usuario on dispositivo.idUsuario = usuario.idUsuario");
+    while ($datos = $sql->fetch_object()) {
+    ?>
+
+
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+          <img class="img-fluid rounded-start" src="./Public/<?php echo $datos->img1; ?>" alt ="..." width="auto">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><?php echo  $datos->Caracteristicas ?></h5>
+              <p class="card-text">Precio: $<?php echo ($datos->Precio) - ($datos->Precio * $datos->Descuento / 100) ?> <?php echo "<FONT COLOR='red'>" . $datos->Descuento . "% </FONT>"; ?></p>
+              <p class="card-text">Existencias: <?php echo  $datos->Existencia ?></p>
+              <p class="card-text"><small class="text-muted"><strike>$<?php echo  $datos->Precio ?></strike></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card text-white bg-secondary mb-3" style="width: 22.9rem;">
+        <div class="card-header">Header<img id="img-dispositivo" src="./Public/<?php echo $datos->img1; ?>" width="auto"></div>
+        <div class="card-body">
+          <h5 style="color:gray;"><strike>$<?php echo  $datos->Precio ?></strike></h5>
+          <p class="card-text text-center fs-4"> Precio: $<?php echo ($datos->Precio) - ($datos->Precio * $datos->Descuento / 100) ?> <?php echo "<FONT COLOR='red'>" . $datos->Descuento . "% </FONT>"; ?></p>
+          <p class="card-text text-center fs-4"> Existencias: <?php echo  $datos->Existencia ?></p>
+          <p class="card-text text-center fs-5"> <?php echo  $datos->Caracteristicas ?> </p>
+        </div>
+      </div>
+    <?php }
+    ?>
+  </div>

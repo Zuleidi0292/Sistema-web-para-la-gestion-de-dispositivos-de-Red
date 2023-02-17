@@ -1,218 +1,56 @@
- <!--Slider de promociones-->
- <div class="row g-0">
-    <div id="carouselExampleCaptions" class="carousel slide mx-auto" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/img1.jpg" class="d-block w-100 image" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Las mejores ofertas</h5>
-            <p>Algún contenido placeholder representativo para la primera diapositiva.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="img/img2.jpg" class="d-block w-100 image" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Productos más vendidos</h5>
-            <p>Algún contenido placeholder representativo para la segunda diapositiva.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="img/img3.jpg" class="d-block w-100 image" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Productos más vendidos</h5>
-            <p>Algún contenido placeholder representativo para la tercera diapositiva.</p>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
 
-  <!--Productos más vendidos-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <title>Oferta</title>
+</head>
+
+<body>
+  <!--Mostramos los dispositivos del usuario.-->
+  <?php include_once "Modelo/conexion.php";?>
+
   <div class="row g-0 justify-content-center mt-5">
-    <p class="text-center fs-3">Últimas novedades</p>
+    <p class="text-center fs-3">Las mejores ofertas las encuentras aquí</p>
     <?php
-    //var_dump($_SESSION['usuario']);
+    $sql = $conexion->query("SELECT * FROM dispositivo inner join marca on dispositivo.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = dispositivo.idCategoria 
+            inner join usuario on dispositivo.idUsuario = usuario.idUsuario");
+    while ($datos = $sql->fetch_object()) {
     ?>
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/router.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Routers</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/switch.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Switches</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/hub.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">HUBs</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-  </div>
-
-  <!--Te puede interesar-->
-  <div class="row g-0 justify-content-center mt-5">
-    <p class="text-center fs-3">Te puede interesar</p>
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/router.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Routers</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/switch.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Switches</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/hub.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">HUBs</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
+      <div class="card ms-2 me-2 mt-1" style="max-width: 400px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="img-fluid rounded-start" src="./Public/<?php echo $datos->img1; ?>" alt="...">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h4 class="card-title"><?php echo  $datos->Caracteristicas ?></h4>
+              <p class="card-text">Precio: $<?php echo ($datos->Precio) - ($datos->Precio * $datos->Descuento / 100) ?> <?php echo "<FONT COLOR='red'>" . $datos->Descuento . "% </FONT>"; ?></p>
+              <p class="card-text">Existencias: <?php echo  $datos->Existencia ?></p>
+              <p class="card-text"><small class="text-muted"><strike>$<?php echo  $datos->Precio ?></strike></small></p>
+              <button type="button" class="btn btn-primary">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>  
+    <?php }
+    ?>
   </div>
 
 
-  <!--Buscar por marca-->
-  <div class="row g-0 justify-content-center mt-5">
-    <p class="text-center fs-3">Marcas más vendidas</p>
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/router.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Routers</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
+  <!--Footer-->
+  <footer class="bg-dark mt-5">
+    <div class="row g-0">
+      <h2 class="text-white">Aqui va el footer xd</h2>
     </div>
+  </footer>
 
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/switch.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Switches</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
 
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/hub.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">HUBs</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-
-    <div class="card ms-2 me-2 mt-1" style="width: 18rem;">
-      <img src="img/access.jpg" class="card-img-top img-card" alt="...">
-      <div class="card-body">
-        <p class="card-text text-center fs-4">Acces point</p>
-      </div>
-      <div class="card-footer">
-        <p class="card-text text-center txt">Ver más</p>
-      </div>
-    </div>
-  </div>    
+</html>

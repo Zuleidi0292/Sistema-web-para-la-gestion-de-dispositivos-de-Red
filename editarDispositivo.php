@@ -36,7 +36,68 @@ echo "<script>console.log('" . $_SERVER["REQUEST_URI"] . "');</script>";
 </head>
 
 <body>
-  <?php include_once './plantillabarradenavegacion.php'; ?>
+ <!--Encabezado de la página-->
+ <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid ms-6">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="./ofertas.php">Ofertas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="#">Cotizar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="#">Perfil</a>
+                        </li>
+                        <?php if (
+                            $_SESSION['tipo'] == 3
+                        ) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" aria-current="page" href="#">Mis compras</a>
+                            </li>
+                        <?php else : ?>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" aria-current="page" href="dispositivo.php">Dispositivos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" aria-current="page" href="preguntas.php">Preguntas</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+
+                    <div class="col justify-content-end busc input-group mb-1 mt-1">
+                        <form class="d-flex form" role="search">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Categoría</option>
+                                <option value="1">Enrutadores</option>
+                                <option value="2">Repetidores</option>
+                                <option value="3">Puerta de enlace</option>
+                                <option value="4">Puente (brigde)</option>
+                                <option value="5">Conmutadores</option>
+                            </select>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" value="">
+                            <button class="btn btn-outline-success me-1" type="submit">Buscar</button>
+                        </form>
+                        <div class="log d-flex">
+                            <?php if (!isset($_SESSION['usuario'])) : ?>
+                                <a href="./Registro.php"><button type="button" class="btn btn-outline-light">Registrate</button></a>
+                                <a href="./Login.php"><button type="button" class="btn btn-warning">Acceder</button></a>
+                            <?php endif; ?>
+                            <a href="Controlador/cerrarSesion.php"><button type="button" class="btn btn-danger">CERRAR SESIÓN</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
   <div class="row align-items-stretch">
     <form method="POST" enctype="multipart/form-data">
 

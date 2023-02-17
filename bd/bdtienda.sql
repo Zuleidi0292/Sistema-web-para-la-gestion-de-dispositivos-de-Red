@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2022 a las 03:45:44
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 7.2.5
+-- Tiempo de generación: 27-10-2022 a las 01:41:54
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categoria` (
-  `idCategoría` int(11) NOT NULL,
+  `idCategoria` int(11) NOT NULL,
   `NomCate` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,7 +36,7 @@ CREATE TABLE `categoria` (
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`idCategoría`, `NomCate`) VALUES
+INSERT INTO `categoria` (`idCategoria`, `NomCate`) VALUES
 (1, 'Switches'),
 (2, 'Routers'),
 (3, 'Puntos de acceso'),
@@ -84,6 +83,15 @@ CREATE TABLE `dispositivo` (
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `dispositivo`
+--
+
+INSERT INTO `dispositivo` (`idDispositivo`, `Caracteristicas`, `Precio`, `Existencia`, `Descuento`, `CantVendida`, `img1`, `img2`, `img3`, `idMarca`, `idCategoria`, `idUsuario`) VALUES
+(1, 'cola', 2.5, 2, -10, 2, 'router.jpg', 'switch.jpg', 'hub.jpg', 1, 1, 52),
+(2, 'dispositivo2', 500, 2, -15, 2, 'router.jpg', 'switch.jpg', 'access.jpg', 1, 1, 54),
+(5, 'tujefa', 500, 8, -15, 2, 'switch.jpg', 'switch.jpg', 'img1.jpg', 10, 8, 52);
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +102,20 @@ CREATE TABLE `encuesta` (
   `idPregunta` int(11) NOT NULL,
   `Pregunta` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `encuesta`
+--
+
+INSERT INTO `encuesta` (`idPregunta`, `Pregunta`) VALUES
+(1, '¿Cuáles son las características principales del Acces Point?'),
+(2, 'Cola'),
+(3, 'Tu jefa\r\n'),
+(4, '¿Qué fue primero, el huevo o la gallina?'),
+(5, 'xd'),
+(6, 'xd'),
+(7, 'xd'),
+(8, 'xdd');
 
 -- --------------------------------------------------------
 
@@ -132,10 +154,31 @@ INSERT INTO `marca` (`idMarca`, `NombreM`) VALUES
 
 CREATE TABLE `respuestas` (
   `idRespuestas` int(11) NOT NULL,
-  `Respuesta` int(11) NOT NULL,
+  `Respuesta` varchar(50) NOT NULL,
   `idPregunta` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `respuestas`
+--
+
+INSERT INTO `respuestas` (`idRespuestas`, `Respuesta`, `idPregunta`, `idUsuario`) VALUES
+(1, '0', 1, 52),
+(2, 'NO.', 1, 52),
+(3, 'NO.', 1, 52),
+(4, 'Yo digo que si.', 1, 53),
+(5, 'Se me hace que no. ', 3, 53),
+(6, 'No, pues si. ', 8, 54),
+(7, 'Yo digo que no. ', 7, 53),
+(8, 'NO.', 6, 54),
+(9, 'NO.', 8, 53),
+(10, 'NO.', 8, 53),
+(11, 'NO.', 6, 53),
+(12, 'NO.', 7, 53),
+(15, 'NO.', 5, 54),
+(16, 'NO.', 2, 54),
+(17, 'Se me hace que no.\r\n', 8, 54);
 
 -- --------------------------------------------------------
 
@@ -178,7 +221,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `Nombre`, `Apellido`, `Usuario`, `Correo`, `Contra`, `idTipoUsuario`) VALUES
-(33, 'Adolfo', 'Pinzón', 'PSAO190120', 'adolfo28@gmail.com', 'xd', 3),
+(33, 'Adolfo', 'Pinzón', 'PSAO190120', 'adolfo28@gmail.com', 'xd', 1),
 (34, 'Adolfo', 'Pinzón', 'PSAO190120', 'adolfo28@gmail.com', 'qrwt', 3),
 (35, 'Adolfo', 'Pinzón', 'PSAO190120', 'adolfo28@gmail.com', 'qrwt', 3),
 (36, 'Adolfo', 'Pinzón', 'PSAO190120', 'adolfo28@gmail.com', 'qrwt', 3),
@@ -191,7 +234,10 @@ INSERT INTO `usuario` (`idUsuario`, `Nombre`, `Apellido`, `Usuario`, `Correo`, `
 (48, 'Beny', 'De la Cruz', 'benytorres', 'benja@gmail.com', 'teamoadolfo', 3),
 (49, 'Adolfo', 'Pinzón', 'DarkShadow', 'adolfo28@gmail.com', 'segsfg', 3),
 (50, 'Adolfo', 'Pinzón', 'DarkShadow', 'adolfo28@gmail.com', 'segsfg', 3),
-(51, 'Adolfo', 'Pinzón', 'DarkShadow', 'adolfo28@gmail.com', 'sfg', 2);
+(51, 'Adolfo', 'Pinzón', 'DarkShadow', 'adolfo28@gmail.com', 'sfg', 2),
+(52, 'Zuleidi', 'De la Cruz', 'Zuley', 'dcrzul@gmail.com', '123', 2),
+(53, 'Jacinto', 'Escobar', 'Jasi', 'jasi@gmail.com', '123', 3),
+(54, 'Andrea', 'Expedito', 'Andre', 'andre@gmail.com', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -215,7 +261,7 @@ CREATE TABLE `venta` (
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idCategoría`);
+  ADD PRIMARY KEY (`idCategoria`);
 
 --
 -- Indices de la tabla `compras`
@@ -289,13 +335,13 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  MODIFY `idDispositivo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `encuesta`
 --
 ALTER TABLE `encuesta`
-  MODIFY `idPregunta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -307,7 +353,7 @@ ALTER TABLE `marca`
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `idRespuestas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRespuestas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tipousuario`
@@ -319,7 +365,7 @@ ALTER TABLE `tipousuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Restricciones para tablas volcadas
@@ -336,7 +382,7 @@ ALTER TABLE `compras`
 -- Filtros para la tabla `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  ADD CONSTRAINT `categoria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoría`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `categoria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `marca` FOREIGN KEY (`idMarca`) REFERENCES `marca` (`idMarca`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

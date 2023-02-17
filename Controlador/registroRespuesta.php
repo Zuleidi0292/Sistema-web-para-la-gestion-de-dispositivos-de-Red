@@ -21,5 +21,5 @@ if (registroRespuesta(
     echo '<script>alert("No se registró.");</script>';
 }
 
-header("Refresh:0; ../index.php");
+header("Refresh:0; ../preguntas.php");
 die();
