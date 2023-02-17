@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+
+body{
+    background-color:#1E2126;
+    color: #fff;
+}
+
+.con1{
+    height: 100vh;
+}
+
+.con2{
+    height: 100vh;
+}
+
+.hijo{
+  margin-top: 20%;
+}
+
+.img-1 {
+    background-image: url('../img/img1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-2 {
+    background-image: url('../img/img2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-3 {
+    background-image: url('../img/img3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+@media screen and (max-width: 980px){
+    .hijo{
+        margin-top: 0%;
+      }
+}

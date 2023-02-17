@@ -1,0 +1,272 @@
+<img src="<?php echo "./Public/" . $dispositivos[$i]['img1']; ?>" class="card-img-top img-card" alt="...">
+<div class="card-body">
+    <p class="card-text text-center fs-4"> <?php echo $dispositivos[$i]['Caracteristicas']; ?> </p>
+    <p class="card-text text-center fs-4"> <?php echo "$" . $dispositivos[$i]['Precio']; ?> </p>
+</div>
+<div class="card-footer">
+    <p class="card-text text-center txt">Ver más</p>
+</div>
+
+
+<div class="card-body">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <p>
+                    <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img1']; ?>" class="d-block w-5" alt="..."></center>
+                </p>
+            </div><br>
+            <div class="carousel-item">
+                <p>
+                    <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img2']; ?>" class="d-block w-5" alt="..."></center>
+                </p>
+            </div>
+            <div class="carousel-item">
+                <p>
+                    <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img3']; ?>" class="d-block w-5" alt="..."></center>
+                </p>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" style="color:black" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <p>
+                    <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img1']; ?>" class="d-block w-5" alt="..." width="200px"></center>
+                </p>
+            </div><br>
+            <div class="carousel-item">
+                <p>
+                    <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img2']; ?>" class="d-block w-5" alt="..." width="200px"></center>
+                </p>
+            </div>
+            <div class="carousel-item">
+                <p>
+                    <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img3']; ?>" class="d-block w-5" alt="..." width="200px"></center>
+                </p>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" style="color:black" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <!-- /*Esto esta bien */ -->
+    <?php if ($_SESSION['tipo'] == 2) : ?>
+      <p class="text-center fs-3">Mis dispositivos</p>
+
+      <?php /*Mostramos los dispositivos del usuario.*/ ?>
+      <?php $num_dispositivos = sizeof($dispositivos); ?>
+      <?php for ($i = 0; $i < $num_dispositivos; $i++) : ?>
+        <?php /* var_dump($dispositivos);  */ ?>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img1']; ?>" class="rounded mx-auto d-block" alt="..." width="300px" height="300px"></center>
+            </div>
+            <div class="carousel-item">
+              <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img2']; ?>" class="rounded mx-auto d-block" alt="..." width="300px" height="300px"></center>
+            </div>
+            <div class="carousel-item">
+              <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img3']; ?>" class="rounded mx-auto d-block" alt="..." width="300px" height="300px"></center>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" style="color:black" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <p class="card-text text-center fs-4"> <?php echo $dispositivos[$i]['Caracteristicas']; ?> </p>
+        <p class="card-text text-center fs-4"> <?php echo "$" . $dispositivos[$i]['Precio']; ?> </p>
+
+      <?php endfor; ?>
+
+
+
+    <?php else : ?>
+
+        <?php
+
+<?php
+if (isset($_POST["btn"])) {
+    if (
+        isset($_POST['caracteristicas']) && isset($_POST['precio'])
+        && isset($_POST['existencia']) && isset($_POST['descuento'])
+        && isset($_POST['CantVendida']) && isset($_POST['idMarca']) && isset($_POST['idCategoria'])
+    ) {
+
+        $id = htmlentities($_POST['idDispositivo']);
+        $caract = htmlentities($_POST['caracteristicas']);
+        $pre = htmlentities($_POST['precio']);
+        $exis = htmlentities($_POST['existencia']);
+        $desc = htmlentities($_POST['descuento']);
+        $cant = htmlentities($_POST['CantVendida']);
+        $marc = htmlentities($_POST['idMarca']);
+        $cat = htmlentities($_POST['idCategoria']);
+
+        $sql = $conexion->query("UPDATE dispositivo SET caracteristicas='$caract', precio='$pre', existencia='$exis', descuento='$desc', CantVendida='$cant', idMarca='$marc',idCategoria='$cat', idUsuario = 2 WHERE idDispositivo = $id");
+        if ($sql == TRUE) {
+            header("location: dispositivo.php");
+        } else {
+
+            echo '<div class="alert alert-danger text-center">Hubo un error al actualizar</div>';
+        }
+    }
+}
+
+
+
+<?php
+        include_once "Modelo/conexion.php";
+        include_once "Controlador/eliminarUsuario.php";
+        sleep(1.5);
+        ?>
+
+<div class="carousel-inner">
+            <div class="carousel-item active">
+              <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img1']; ?>" class="rounded mx-auto d-block" alt="..." width="300px" height="300px">
+              <a href="editarDispositivo.php"><button type="button" class="btn btn-primary">Editar</button></a>
+              </center>
+            </div>
+            <div class="carousel-item">
+              <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img2']; ?>" class="rounded mx-auto d-block" alt="..." width="300px" height="300px"></center>
+            </div>
+            <div class="carousel-item">
+              <center><img src="<?php echo "./Public/" . $dispositivos[$i]['img3']; ?>" class="rounded mx-auto d-block" alt="..." width="300px" height="300px"></center>
+            </div>
+          </div>
+
+
+<?php
+
+          $sql = $conexion->query("SELECT * FROM dispositivo");
+
+          while ($dis = $sql->fetch_object()) {
+          ?>
+            <a href="editarDispositivo.php"><button type="button" class="btn btn-primary">Editar</button></a>
+            <a href="admin.php?id=<?= $dis->idDispositivo ?>"><button type="button" class="btn btn-small btn-danger fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="return eliminarUsuario()"></button></a>
+          <?php } ?>
+
+
+          <?php
+
+include_once '../Modelo/bd.php';
+include_once '../Modelo/dispositivo.php';
+if(isset($_GET['idDispositivo'])){
+    $id = htmlentities($_GET['idDispositivo']);
+    $p = Dispositivos::buscarDispositivoID($idDispositivo);
+    $pro = $p;
+    session_start();
+    $_SESSION['obj_pro'] = $p;
+    $p = $_SESSION['obj_pro'];
+
+    header("Location: ../Vistas/editarProducto.php");
+}
+if (
+    isset($_POST['caracteristicas']) && isset($_POST['precio'])
+    && isset($_POST['existencia']) && isset($_POST['descuento'])
+    && isset($_POST['CantVendida']) && isset($_POST['idMarca']) 
+    && isset($_POST['idCategoria']) && isset($_POST['idDispositivo'])
+) {
+    // Obtenemos los datos del formulario.
+    $caract = htmlentities($_POST['caracteristicas']);
+    $pre = htmlentities($_POST['precio']);
+    $exis = htmlentities($_POST['existencia']);
+    $desc = htmlentities($_POST['descuento']);
+    $cant = htmlentities($_POST['CantVendida']);
+    $marc = htmlentities($_POST['idMarca']);
+    $cat = htmlentities($_POST['idCategoria']);
+    $idDis = htmlentities($_POST['idDispositivo']);
+
+    //Mover la imagen al servidor
+    $carpeta_destino = "../Public/";
+    $nombre_img1 = $_FILES['img1']['name'];
+    $nombre_img2 = $_FILES['img2']['name'];
+    $nombre_img3 = $_FILES['img3']['name'];
+
+    $archivo_destinoimg1 = $carpeta_destino . basename($nombre_img1);
+    $archivo_destinoimg2 = $carpeta_destino . basename($nombre_img2);
+    $archivo_destinoimg3 = $carpeta_destino . basename($nombre_img3);
+    $tipo_archivo1 = strtolower(pathinfo($archivo_destinoimg1, PATHINFO_EXTENSION));
+    $tipo_archivo2 = strtolower(pathinfo($archivo_destinoimg2, PATHINFO_EXTENSION));
+    $tipo_archivo3 = strtolower(pathinfo($archivo_destinoimg3, PATHINFO_EXTENSION));
+    $img1 = "";
+    $img2 = "";
+    $img3 = "";
+    //Movemos la imagen a la carpeta
+    if (move_uploaded_file($_FILES['img1']['tmp_name'], $archivo_destinoimg1) && move_uploaded_file($_FILES['img2']['tmp_name'], $archivo_destinoimg2) && move_uploaded_file($_FILES['img3']['tmp_name'], $archivo_destinoimg3)) {
+        echo "Logramos subir la imagen<br>";
+        $img1 = $nombre_img1;
+        $img2 = $nombre_img2;
+        $img3 = $nombre_img3;
+    }
+
+    // Obtenemos el id del coordinador.
+    session_start();
+    $idU = $_SESSION['usuario'];
+
+    // Creamos el dispositivo para registrarlo en la bd.
+    $new_dispositivo = new Dispositivos($idDis, $caract, $pre, $exis, $desc, $cant, $img1, $img2, $img3, $marc, $cat, $idU);
+    try {
+        if ($new_dispositivo->actualizar()) {
+            echo '<div class="alert alert-danger text-center">Se registro correctamente:)</div>';
+        } else {
+            echo '<div class="alert alert-danger text-center">Hubo un error al registrar el dispositivo</div>';
+        }
+    } catch (Exception $ex) {
+        echo '<div class="alert alert-danger text-center">' . $ex->getMessage() . '</div>';
+    }
+}
+
+
+
+/* barra xd  */
+<div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/img1.jpg" class="d-block w-100 image" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <?php if ($_SESSION['tipo'] == 2) : ?>
+                            <h5>Bienvenido Coordinador</h5>
+                            <p>En este apartado podras visualizar tus dispositivos.</p>
+                        <?php else : ?>
+                            <h5>Productos más vendidos</h5>
+                            <p>Algún contenido placeholder representativo para la primera diapositiva.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/img2.jpg" class="d-block w-100 image" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Productos más vendidos</h5>
+                        <p>Algún contenido placeholder representativo para la segunda diapositiva.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/img3.jpg" class="d-block w-100 image" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Productos más vendidos</h5>
+                        <p>Algún contenido placeholder representativo para la tercera diapositiva.</p>
+                    </div>
+                </div>
+            </div>
